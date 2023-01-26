@@ -1,6 +1,7 @@
 body{
     background-color: black;
     color: white;
+    padding: 5%;
 }
 
 #time_container {
@@ -10,6 +11,11 @@ body{
 #time {
     float: left;
     font-size: 100px;
+}
+
+#time_of_day {
+    float: left;
+    font-size: 40px;
 }
 
 #seconds {

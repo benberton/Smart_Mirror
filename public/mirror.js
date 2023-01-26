@@ -1,23 +1,16 @@
 document.addEventListener("DOMContentLoaded", ()=>{
+    //sets the clock every 300ms
+    setInterval(function(){
+        const date = new Date()
+        document.getElementById("time").innerHTML = getTimeString(date)
+        //uncomment to add seconds
+        document.getElementById("seconds").innerHTML = getSeconds(date)
+        document.getElementById("time_of_day").innerHTML = getTimeOfDay(date)
+    }, 300);
 
-    setInterval(setTime, 300);
 });
 
-function setTime()
-{
-    const date = new Date()
-    
-    document.getElementById("time").innerHTML = date.getHours() + ":" + convertToTime(date.getMinutes())
-    document.getElementById("seconds").innerHTML = convertToTime(date.getSeconds())
-}
 
-// if the time is less that 10, a zero is added in front (ex: 8 -> 08)
-function convertToTime(time)
-{
-    if (time < 10)
-        return "0" + time
-    return time
-}
 
 
 
