@@ -22,3 +22,22 @@ body{
     float: left;
     font-size: 40px;
 }
+
+#image_container {
+    padding: 5%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    width: 400px;
+}
+
+#image {
+    border-radius: 5px;
+    margin: auto;
+    display: block;
+    max-width: 400px;
+    max-height: 300px;
+}

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         const date = new Date()
         document.getElementById("time").innerHTML = getTimeString(date)
         //uncomment to add seconds
-        document.getElementById("seconds").innerHTML = getSeconds(date)
+        // document.getElementById("seconds").innerHTML = getSeconds(date)
         document.getElementById("time_of_day").innerHTML = getTimeOfDay(date)
     }, 300);
 
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     //rotates between images
     setInterval(function(){
         console.log(imageNum)
-        document.getElementById("image").src = "images/" + (imageNum % 4) + ".png"
+        document.getElementById("image").src = "images/" + (imageNum % 5) + ".png"
         imageNum++
     },3000)
 });
