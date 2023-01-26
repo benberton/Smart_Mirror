@@ -5,9 +5,6 @@ const port = 8080
 // const port = 8080
 const app = express()
 
-// ID is incremented in base 36
-let curIDVal = "1"
-let pollMap = new Map()
 
 app.use(express.static('public'))
 //using json format
