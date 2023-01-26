@@ -8,6 +8,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
         document.getElementById("time_of_day").innerHTML = getTimeOfDay(date)
     }, 300);
 
+    let imageNum = 0;
+    //rotates between images
+    setInterval(function(){
+        console.log(imageNum)
+        document.getElementById("image").src = "images/" + (imageNum % 4) + ".png"
+        imageNum++
+    },3000)
 });
 
 
