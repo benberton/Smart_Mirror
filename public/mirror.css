@@ -2,3 +2,17 @@ body{
     background-color: black;
     color: white;
 }
+
+#time_container {
+    width: 300px;
+}
+
+#time {
+    float: left;
+    font-size: 100px;
+}
+
+#seconds {
+    float: left;
+    font-size: 40px;
+}
