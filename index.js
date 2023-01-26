@@ -18,13 +18,16 @@ app.listen(port,function(error) {
         console.log("Server started on port " + port)
 })
 
-// the default page is set to the create poll page when site is visited
+// the default page is set to the mirror html page when site is visited
 app.get('/', function(req, res){
     res.redirect('/mirror.html');
 });
 
-//basic api call
-app.post("/api/getTime", function(req,res) {
-    res.send(JSON.stringify({"time": "11am"}))
-    res.end()
-})
+
+
+// //basic api call example
+// app.post("/api/getTime", function(req,res) {
+//     console.log(req.data)
+//     res.send(JSON.stringify({"time": Date().toISOString()}))
+//     res.end()
+// })
