@@ -35,9 +35,30 @@ body{
 }
 
 #image {
+    animation: fadeinout 10s linear;
     border-radius: 5px;
     margin: auto;
-    display: block;
-    max-width: 400px;
     max-height: 300px;
+    max-width: 400px;
+}
+
+/* The @keyframes for the animation */
+@keyframes fadeinout {
+    0% {
+      opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+}
+
+
+.hidden {
+    display: none;
 }
