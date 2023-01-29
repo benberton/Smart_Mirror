@@ -1,4 +1,5 @@
 ## README File
+### Team Members: Jaylene, Ben, Mason, Jesse
 
 
 1. Display images. Define two or more images to display. 
