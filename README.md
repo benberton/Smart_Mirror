@@ -18,6 +18,9 @@
     * **File Name:** joystick.py
     * **Description:** Functions as a game that that allows users to use the joystick to control a red dot and move to a random green stationary dot. If the user presses down on the      joystick when they are on top of the green dot, the number of total times they have played the game will display on the screen. The number that is displayed will move from right to left and will be blue with a background of white. It's scroll speed is 0.1. 
 
+### How to Run & Test the File:
+* sudo python _filename_
+* sudo motion.py 
 
 ### Division of Work:
 * Jaylene and Ben: worked on joystick.py
