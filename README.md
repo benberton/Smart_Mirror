@@ -20,7 +20,7 @@
 
 ### How to Run & Test the File:
 1. sudo python joystick.py
-2. sudo motion.py
+2. sudo python motion.py
 
 ### Division of Work:
 * Jaylene and Ben: worked on joystick.py
