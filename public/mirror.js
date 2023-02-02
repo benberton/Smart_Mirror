@@ -8,19 +8,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
         document.getElementById("time_of_day").innerHTML = getTimeOfDay(date)
     }, 300);
 
+
     let imageNum = 0;
     //rotates between images
     setInterval(function(){
-        // let image = document.getElementById("image")
         let container = document.getElementById("image_container")
         container.removeChild(container.lastElementChild)
         let image = document.createElement("img")
         image.id = "image"
         image.src = "images/" + (imageNum % 5) + ".png"
         container.appendChild(image)
-        // container.classList.add("transition")
-        // image.src = "images/" + (imageNum % 5) + ".png"
-        // container.classList.remove("transition")
         imageNum++
     },10000)
 });
