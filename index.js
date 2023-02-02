@@ -46,6 +46,11 @@ app.get('/login', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
 });
   
+app.post("/api/spotifyLogin", function(req,res) {
+    res.redirect(spotifyApi.createAuthorizeURL(scopes));
+})
+
+//is called once the user is logged in, returns the access token and refreshes to make sure a valid token is in use
 app.get('/callback', (req, res) => {
     const error = req.query.error;
     const code = req.query.code;
@@ -63,26 +68,19 @@ app.get('/callback', (req, res) => {
     const access_token = data.body['access_token'];
     const refresh_token = data.body['refresh_token'];
     const expires_in = data.body['expires_in'];
-
+    console.log("acces token granted")
     spotifyApi.setAccessToken(access_token);
     spotifyApi.setRefreshToken(refresh_token);
 
-    console.log('access_token:', access_token);
-    console.log('refresh_token:', refresh_token);
-
-    console.log(
-        `Sucessfully retreived access token. Expires in ${expires_in} s.`
-    );
-    res.send('Success! You can now close the window.');
-
+    //refreshes the access token once 90% of its time has been used
     setInterval(async () => {
         const data = await spotifyApi.refreshAccessToken();
         const access_token = data.body['access_token'];
 
-        console.log('The access token has been refreshed!');
-        console.log('access_token:', access_token);
+        // console.log('The access token has been refreshed!');
+        // console.log('access_token:', access_token);
         spotifyApi.setAccessToken(access_token);
-    }, expires_in / 2 * 1000);
+    }, expires_in * .9);
     })
     .catch(error => {
     console.error('Error getting Tokens:', error);
@@ -90,10 +88,8 @@ app.get('/callback', (req, res) => {
     });
 });
 
-const token = "xxxx";
+
 app.post("/api/getCurrentSong", function(req,res) {
-    const spotifyApi = new SpotifyWebApi();
-    spotifyApi.setAccessToken(token);
     spotifyApi.getMyCurrentPlayingTrack().then(e => {
         let song = e.body.item.name
         let album = e.body.item.album.name
