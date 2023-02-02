@@ -42,15 +42,13 @@ var spotifyApi = new SpotifyWebApi({
 });
   
   
+//redirects user to spotify login, then triggers the callback call (bellow)
 app.get('/login', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
 });
   
-app.post("/api/spotifyLogin", function(req,res) {
-    res.redirect(spotifyApi.createAuthorizeURL(scopes));
-})
 
-//is called once the user is logged in, returns the access token and refreshes to make sure a valid token is in use
+//is called once the user is logged in. It returns the access token and refreshes to make sure a valid token is in use
 app.get('/callback', (req, res) => {
     const error = req.query.error;
     const code = req.query.code;
@@ -102,7 +100,6 @@ app.post("/api/getCurrentSong", function(req,res) {
         res.end()
       }
     )
-    // console.log(data.body.item.artists)
 })
 
 app.listen(port,function(error) {

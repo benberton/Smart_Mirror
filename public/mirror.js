@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     // },10000)
 
     //sets spotify song once every 3 seconds
+    let curSong = ""
     setInterval(function(){
   
         fetch('/api/getCurrentSong', {
@@ -33,9 +34,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
         })
         .then((response) => response.json())
         .then((data) => {
-            document.getElementById("album_cover").src = data.image
-            document.getElementById("song_info").innerHTML = data.song + " - " + String(data.artists)
-         
+            //song html only set if a new song is played
+            let song = data.song + " - " + String(data.artists)
+            if (curSong != song)
+            {
+                document.getElementById("album_cover").src = data.image
+                document.getElementById("song_info").innerHTML = song
+                curSong = song
+            }           
 
             // console.log("Song: " + data.song)
             // console.log("Album: " + data.album)
