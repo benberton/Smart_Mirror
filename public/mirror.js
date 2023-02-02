@@ -34,8 +34,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
         })
         .then((response) => response.json())
         .then((data) => {
+            let artists = ""
+            for (let i = 0; i < data.artists.length; ++i)
+            {
+                artists += String(data.artists[i])
+                if (i != data.artists.length - 1)
+                    artists += ", "
+            }
+                
             //song html only set if a new song is played
-            let song = data.song + " - " + String(data.artists)
+            let song = data.song + " - " + artists
             if (curSong != song)
             {
                 document.getElementById("album_cover").src = data.image
