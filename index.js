@@ -2,10 +2,14 @@ const express = require('express')
 const fs = require('fs')
 
 const port = 8888
-// const port = 8080
+
 const app = express()
 
-var SpotifyclearWebApi = require('spotify-web-api-node');
+app.use(express.static('public'))
+//using json format
+app.use(express.json());
+
+var SpotifyWebApi = require('spotify-web-api-node');
 
 const scopes = [
     'ugc-image-upload',
@@ -39,20 +43,20 @@ var spotifyApi = new SpotifyWebApi({
   
   
 app.get('/login', (req, res) => {
-    res.redirect(spotifyApi.createAuthorizeURL(scopes));
+res.redirect(spotifyApi.createAuthorizeURL(scopes));
 });
   
 app.get('/callback', (req, res) => {
     const error = req.query.error;
     const code = req.query.code;
     const state = req.query.state;
-
+  
     if (error) {
-        console.error('Callback Error:', error);
-        res.send(`Callback Error: ${error}`);
-        return;
+      console.error('Callback Error:', error);
+      res.send(`Callback Error: ${error}`);
+      return;
     }
-
+  
     spotifyApi
     .authorizationCodeGrant(code)
     .then(data => {
@@ -86,11 +90,16 @@ app.get('/callback', (req, res) => {
     });
 });
 
-
-app.post("/api/getCurSong", function(req,res) {
-    console.log(req.data)
-    res.send(JSON.stringify({"song": Date().toISOString()}))
-    res.end()
+const token = "";
+app.post("/api/getCurrentSong", function(req,res) {
+    const spotifyApi = new SpotifyWebApi();
+    spotifyApi.setAccessToken(token);
+    spotifyApi.getMyCurrentPlayingTrack().then(e => {
+        res.send(JSON.stringify({"song": e.body.item.artists}))
+        res.end()
+      }
+    )
+    // console.log(data.body.item.artists)
 })
 
 app.listen(port,function(error) {

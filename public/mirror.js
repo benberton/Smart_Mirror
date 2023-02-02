@@ -20,6 +20,22 @@ document.addEventListener("DOMContentLoaded", ()=>{
         container.appendChild(image)
         imageNum++
     },10000)
+
+
+    fetch('/api/getCurrentSong', {
+        method: 'POST', // or 'PUT'
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({"key": "na"}),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data.song)
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 });
 
 
