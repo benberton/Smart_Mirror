@@ -43,7 +43,7 @@ var spotifyApi = new SpotifyWebApi({
   
   
 app.get('/login', (req, res) => {
-res.redirect(spotifyApi.createAuthorizeURL(scopes));
+    res.redirect(spotifyApi.createAuthorizeURL(scopes));
 });
   
 app.get('/callback', (req, res) => {
@@ -90,12 +90,19 @@ app.get('/callback', (req, res) => {
     });
 });
 
-const token = "";
+const token = "xxxx";
 app.post("/api/getCurrentSong", function(req,res) {
     const spotifyApi = new SpotifyWebApi();
     spotifyApi.setAccessToken(token);
     spotifyApi.getMyCurrentPlayingTrack().then(e => {
-        res.send(JSON.stringify({"song": e.body.item.artists}))
+        let song = e.body.item.name
+        let album = e.body.item.album.name
+        let image = e.body.item.album.images[0].url
+        let artists = []
+        for (let i = 0; i < e.body.item.artists.length; ++i)
+            artists.push(e.body.item.artists[i].name)
+        
+        res.send(JSON.stringify({"song": song, "album": album,"artists": artists, "image": image}))
         res.end()
       }
     )

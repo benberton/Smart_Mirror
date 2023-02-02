@@ -31,7 +31,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
     })
     .then((response) => response.json())
     .then((data) => {
-        console.log(data.song)
+        console.log("Song: " + data.song)
+        console.log("Album: " + data.album)
+        console.log("Artists: " + data.artists)
+        console.log("Image:" + data.image)
     })
     .catch((error) => {
         console.error('Error:', error);
