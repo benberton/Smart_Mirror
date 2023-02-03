@@ -4,17 +4,63 @@ document.addEventListener("DOMContentLoaded", ()=>{
         const date = new Date()
         document.getElementById("time").innerHTML = getTimeString(date)
         //uncomment to add seconds
-        document.getElementById("seconds").innerHTML = getSeconds(date)
+        // document.getElementById("seconds").innerHTML = getSeconds(date)
         document.getElementById("time_of_day").innerHTML = getTimeOfDay(date)
     }, 300);
 
-    let imageNum = 0;
-    //rotates between images
+
+    // let imageNum = 0;
+    // //rotates between images
+    // setInterval(function(){
+    //     let container = document.getElementById("image_container")
+    //     container.removeChild(container.lastElementChild)
+    //     let image = document.createElement("img")
+    //     image.id = "image"
+    //     image.src = "images/" + (imageNum % 5) + ".png"
+    //     container.appendChild(image)
+    //     imageNum++
+    // },10000)
+
+    //sets spotify song once every 3 seconds
+    let curSong = ""
     setInterval(function(){
-        console.log(imageNum)
-        document.getElementById("image").src = "images/" + (imageNum % 4) + ".png"
-        imageNum++
+  
+        fetch('/api/getCurrentSong', {
+            method: 'POST', // or 'PUT'
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({"key": "na"}),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            let artists = ""
+            for (let i = 0; i < data.artists.length; ++i)
+            {
+                artists += String(data.artists[i])
+                if (i != data.artists.length - 1)
+                    artists += ", "
+            }
+                
+            //song html only set if a new song is played
+            let song = data.song + " - " + artists
+            if (curSong != song)
+            {
+                document.getElementById("album_cover").src = data.image
+                document.getElementById("song_info").innerHTML = song
+                curSong = song
+            }           
+
+            // console.log("Song: " + data.song)
+            // console.log("Album: " + data.album)
+            // console.log("Artists: " + data.artists)
+            // console.log("Image:" + data.image)
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     },3000)
+  
 });
 
 

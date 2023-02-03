@@ -22,3 +22,43 @@ body{
     float: left;
     font-size: 40px;
 }
+
+#image_container {
+    padding: 5%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    width: 400px;
+}
+
+#image {
+    animation: fadeinout 10s linear;
+    border-radius: 5px;
+    margin: auto;
+    max-height: 300px;
+    max-width: 400px;
+}
+
+/* The @keyframes for the animation */
+@keyframes fadeinout {
+    0% {
+      opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+}
+
+
+.hidden {
+    display: none;
+}
