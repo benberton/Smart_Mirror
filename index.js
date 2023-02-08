@@ -74,7 +74,7 @@ app.get('/callback', (req, res) => {
     setInterval(async () => {
         const data = await spotifyApi.refreshAccessToken();
         const access_token = data.body['access_token'];
-
+d
         // console.log('The access token has been refreshed!');
         // console.log('access_token:', access_token);
         spotifyApi.setAccessToken(access_token);
@@ -101,6 +101,7 @@ app.post("/api/getCurrentSong", function(req,res) {
       }
     )
 })
+
 
 app.listen(port,function(error) {
     if (error)
