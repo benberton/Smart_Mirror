@@ -36,12 +36,12 @@ const scopes = [
 
 // credentials are optional
 var spotifyApi = new SpotifyWebApi({
-    clientId: '28cafb8e6ad643abb3c590097c498b8d',
-    clientSecret: 'fc7c371dc50241b49afea980c72d5aaa',
+    clientId: '8a7db05a27494724906dbc7372bdd65f',
+    clientSecret: 'd5b31c86cd344e488a6336dc9dc17f43',
     redirectUri: 'http://localhost:8888/callback'
 });
   
-  
+
 //redirects user to spotify login, then triggers the callback call (bellow)
 app.get('/login', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
@@ -87,7 +87,7 @@ app.get('/callback', (req, res) => {
 });
 
 
-app.post("/api/getCurrentSong", function(req,res) {
+app.put("/api/getCurrentSong", function(req,res) {
     spotifyApi.getMyCurrentPlayingTrack().then(e => {
         let song = e.body.item.name
         let album = e.body.item.album.name

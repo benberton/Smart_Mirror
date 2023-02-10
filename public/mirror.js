@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     setInterval(function(){
   
         fetch('/api/getCurrentSong', {
-            method: 'POST', // or 'PUT'
+            method: 'PUT', // or 'PUT'
             headers: {
             'Content-Type': 'application/json',
             },
