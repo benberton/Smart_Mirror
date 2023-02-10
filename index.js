@@ -33,7 +33,8 @@ const scopes = [
     'user-follow-modify'
 ];
 
-
+// ************ CHANGE THE clientID and clientSecret values to your own************
+// -------->  https://developer.spotify.com/dashboard/applications GO HERE <-----
 // credentials are optional
 var spotifyApi = new SpotifyWebApi({
     clientId: '8a7db05a27494724906dbc7372bdd65f',
