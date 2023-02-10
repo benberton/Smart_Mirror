@@ -12,3 +12,9 @@ To develop our project, we are using a raspberry pi, a motion senor, desktop mon
 ### How to Run & Test the Files:
 1. sudo python joystick.py
 2. sudo python motion.py
+
+
+### How to connect to the project
+1. clone repo
+2. 
+3. web browser: localhost:8888/user.html
