@@ -199,6 +199,6 @@ request(url, function(err, response, body) {
     });
 });
 
-  app.listen(8888, function () {
+  app.listen(5000, function () {
     console.log("Weather app listening on port 5000!");
   });
