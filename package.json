@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "express": "^4.18.2",
+    "newsapi": "^2.4.1",
     "spotify-web-api-node": "^5.0.2"
   }
 }
