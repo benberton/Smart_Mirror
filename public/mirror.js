@@ -21,6 +21,26 @@ document.addEventListener("DOMContentLoaded", ()=>{
     //     imageNum++
     // },10000)
 
+
+    //calls for news article once every hour
+    setInterval(function(){
+        console.log("called")
+        fetch('/api/getArticles', {
+            method: 'POST', // or 'PUT'
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({"key": "na"}),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data.articles)
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    },5000)
+
     //sets spotify song once every 3 seconds
     let curSong = ""
     setInterval(function(){

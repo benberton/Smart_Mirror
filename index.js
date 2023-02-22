@@ -102,30 +102,31 @@ app.post("/api/getCurrentSong", function(req,res) {
     )
 })
 
+
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('a383db00532449a784029a7a4829665f');
-newsapi.v2.topHeadlines({
+
+app.post("/api/getArticles", function(req,res) {
+  newsapi.v2.topHeadlines({
     // sources: 'bbc-news,the-verge',
     // q: 'bitcoin',
     language: 'en',
     country: 'us',
-    sortby: 'popularity',
-    page: 3,
-    pageSize: 3
-  }).then(response => {
-    // console.log(response);
-    let titles = []
-    let articles = response.articles
-    for (let i = 0; i < articles.length; ++i)
-        titles.push(articles[i].title)
-    console.log(titles)
-    /*
-      {
-        status: "ok",
-        articles: [...]
-      }
-    */
+      sortby: 'popularity',
+      page: 3,
+      pageSize: 3
+    }).then(response => {
+      // console.log(response);
+      let titles = []
+      let articles = response.articles
+      for (let i = 0; i < articles.length; ++i)
+          titles.push(articles[i].title)
+      res.send(JSON.stringify({"articles": articles}))
   });
+})
+
+
+  
 
 app.listen(port,function(error) {
     if (error)
