@@ -74,7 +74,6 @@ app.get('/callback', (req, res) => {
     setInterval(async () => {
         const data = await spotifyApi.refreshAccessToken();
         const access_token = data.body['access_token'];
-d
         // console.log('The access token has been refreshed!');
         // console.log('access_token:', access_token);
         spotifyApi.setAccessToken(access_token);
@@ -85,7 +84,6 @@ d
     res.send(`Error getting Tokens: ${error}`);
     });
 });
-
 
 app.post("/api/getCurrentSong", function(req,res) {
     spotifyApi.getMyCurrentPlayingTrack().then(e => {
@@ -103,9 +101,11 @@ app.post("/api/getCurrentSong", function(req,res) {
 })
 
 
+//credentials for news api
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('a383db00532449a784029a7a4829665f');
 
+//returns top x number of news articles
 app.post("/api/getArticles", function(req,res) {
   newsapi.v2.topHeadlines({
     // sources: 'bbc-news,the-verge',
@@ -113,8 +113,8 @@ app.post("/api/getArticles", function(req,res) {
     language: 'en',
     country: 'us',
       sortby: 'popularity',
-      page: 3,
-      pageSize: 3
+      page: 5,
+      pageSize: 5
     }).then(response => {
       // console.log(response);
       let titles = []

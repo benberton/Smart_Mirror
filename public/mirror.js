@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     //calls for news article once every hour
     setInterval(function(){
-        console.log("called")
         fetch('/api/getArticles', {
             method: 'POST', // or 'PUT'
             headers: {
@@ -39,7 +38,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         .catch((error) => {
             console.error('Error:', error);
         });
-    },5000)
+    },10000)
 
     //sets spotify song once every 3 seconds
     let curSong = ""
