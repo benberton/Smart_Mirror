@@ -22,6 +22,24 @@ document.addEventListener("DOMContentLoaded", ()=>{
     // },10000)
 
 
+
+    // let articles = [
+    // "Apple high-yield Savings account one step closer to launch",
+    // "iPhone global sell-through improved in January, still declining overall",
+    // "Apple has released a Rapid Security Response update for the iPhone and Mac",
+    // "Apple Permanently Closes Charlotte, North Carolina Store After Multiple Shooting Incidents"
+    // ]
+
+    //cylces through the current articles
+    let curArticle = 0
+    let readTime = 10000
+    let articles = []
+    setInterval(function(){
+        let article_title = document.getElementById("news_article")
+        article_title.innerHTML = articles[curArticle % articles.length]
+        curArticle++
+    },readTime)
+
     //calls for news article once every hour
     setInterval(function(){
         fetch('/api/getArticles', {
@@ -34,6 +52,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         .then((response) => response.json())
         .then((data) => {
             console.log(data.articles)
+            articles = data.articles
         })
         .catch((error) => {
             console.error('Error:', error);
