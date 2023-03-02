@@ -108,21 +108,16 @@ const newsapi = new NewsAPI('a383db00532449a784029a7a4829665f');
 //returns top x number of news articles
 app.post("/api/getArticles", function(req,res) {
   newsapi.v2.topHeadlines({
-    // sources: 'bbc-news,the-verge',
-    // q: 'bitcoin',
-    language: 'en',
-    country: 'us',
-      sortby: 'popularity',
-      page: 5,
-      pageSize: 5
+        language: 'en',
+        country: 'us',
+        sortby: 'popularity'
     }).then(response => {
-      // console.log(response);
-      let titles = []
-      let articles = response.articles
-      for (let i = 0; i < articles.length; ++i)
-          titles.push(articles[i].title)
-      res.send(JSON.stringify({"articles": articles}))
-  });
+        let titles = []
+        let articles = response.articles
+        for (let i = 0; i < articles.length; ++i)
+            titles.push(articles[i].title)
+        res.send(JSON.stringify({"articles": titles}))
+    });
 })
 
 
