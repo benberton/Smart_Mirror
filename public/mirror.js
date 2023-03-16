@@ -10,20 +10,19 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     //cylces through the current articles
     let curArticle = 0
-    let readTime = 10000
-    let articles = []
+    let readTime = 50000
+    // let articles = []
+    let articles = [
+        "Apple high-yield Savings account one step closer to launch",
+        "iPhone global sell-through improved in January, still declining overall",
+        "Apple has released a Rapid Security Response update for the iPhone and Mac",
+        "Apple Permanently Closes Charlotte, North Carolina Store After Multiple Shooting Incidents"
+    ]
+
     let numOfArticles = 5
     setInterval(function(){
-        //clearing the container
-        let articlesContainer = document.getElementById("news_articles")
-        while(articlesContainer.firstChild)
-            articlesContainer.removeChild(articlesContainer.firstChild)
-        for (let i = 0; i < numOfArticles; ++i)
-        {
-        
-        }
         let article_title = document.getElementById("news_article")
-        article_title.innerHTML = articles[curArticle % articles.length]
+        article_title.innerHTML = "- " + articles[curArticle % articles.length]
         curArticle++
     },readTime)
 
@@ -40,6 +39,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         .then((data) => {
             console.log(data.articles)
             articles = data.articles
+            curArticle = 0
         })
         .catch((error) => {
             console.error('Error:', error);
