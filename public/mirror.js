@@ -6,35 +6,22 @@ document.addEventListener("DOMContentLoaded", ()=>{
         //uncomment to add seconds
         // document.getElementById("seconds").innerHTML = getSeconds(date)
         document.getElementById("time_of_day").innerHTML = getTimeOfDay(date)
-    }, 300);
-
-
-    // let imageNum = 0;
-    // //rotates between images
-    // setInterval(function(){
-    //     let container = document.getElementById("image_container")
-    //     container.removeChild(container.lastElementChild)
-    //     let image = document.createElement("img")
-    //     image.id = "image"
-    //     image.src = "images/" + (imageNum % 5) + ".png"
-    //     container.appendChild(image)
-    //     imageNum++
-    // },10000)
-
-
-
-    // let articles = [
-    // "Apple high-yield Savings account one step closer to launch",
-    // "iPhone global sell-through improved in January, still declining overall",
-    // "Apple has released a Rapid Security Response update for the iPhone and Mac",
-    // "Apple Permanently Closes Charlotte, North Carolina Store After Multiple Shooting Incidents"
-    // ]
+    }, 30);
 
     //cylces through the current articles
     let curArticle = 0
     let readTime = 10000
     let articles = []
+    let numOfArticles = 5
     setInterval(function(){
+        //clearing the container
+        let articlesContainer = document.getElementById("news_articles")
+        while(articlesContainer.firstChild)
+            articlesContainer.removeChild(articlesContainer.firstChild)
+        for (let i = 0; i < numOfArticles; ++i)
+        {
+        
+        }
         let article_title = document.getElementById("news_article")
         article_title.innerHTML = articles[curArticle % articles.length]
         curArticle++

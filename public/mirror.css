@@ -1,64 +1,39 @@
 body{
     background-color: black;
     color: white;
-    padding: 5%;
+    padding: 7%;
 }
 
 #time_container {
-    width: 300px;
+    width: 100%;
 }
 
 #time {
-    float: left;
-    font-size: 100px;
+    font-size: 23vh;
+    display: inline-block;
 }
 
 #time_of_day {
-    float: left;
-    font-size: 40px;
+    font-size: 12vh;
+    display: inline-block;
 }
 
-#seconds {
-    float: left;
-    font-size: 40px;
+#spotify_content {
+    display: inline-block;
+    vertical-align: top;
+    width: 15%;
+    margin-right: 5%;
 }
 
-#image_container {
-    padding: 5%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    height: 300px;
-    width: 400px;
+#album_cover {
+    max-width: 100%;
 }
 
-#image {
-    animation: fadeinout 10s linear;
-    border-radius: 5px;
-    margin: auto;
-    max-height: 300px;
-    max-width: 400px;
+#news_container {
+    display: inline-block;
+    width: 55%;
 }
 
-/* The @keyframes for the animation */
-@keyframes fadeinout {
-    0% {
-      opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-}
-
-
-.hidden {
-    display: none;
+#news_header {
+    font-size: 25px;
 }
