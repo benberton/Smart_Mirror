@@ -9,16 +9,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
         document.getElementById("time_of_day").innerHTML = getTimeOfDay(date)
     }, 30);
 
-   
-    // let articles = []
-    let articles = [
-        "Apple high-yield Savings account one step closer to launch",
-        "iPhone global sell-through improved in January, still declining overall",
-        "Apple has released a Rapid Security Response update for the iPhone and Mac",
-        "Apple Permanently Closes Charlotte, North Carolina Store After Multiple Shooting Incidents"
-    ]
 
     //uses modular math to cycle between the articles returned by the news API
+    let articles = []
     let numOfArticles = 0
     let curArticle = 0
     let readTime = 50000
@@ -42,18 +35,19 @@ document.addEventListener("DOMContentLoaded", ()=>{
             console.log(data.articles)
             articles = data.articles
             numOfArticles = data.articles.length
+            console.log(numOfArticles)
             curArticle = 0
         })
         .catch((error) => {
             console.error('Error:', error);
         });
-    },10000)
+    },200000)
 
     //sets spotify song once every 3 seconds using the Spotify API
     let curSong = ""
     setInterval(function(){
   
-        //call to backend for the users data
+        //call to backend for the user's current song playing on Spotify
         fetch('/api/getCurrentSong', {
             method: 'POST', // or 'PUT'
             headers: {
@@ -64,7 +58,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
         .then((response) => response.json())
         .then((data) => {
             //backend returns the user's Spotify data
-            //list of artists is parsed
             let artists = ""
             for (let i = 0; i < data.artists.length; ++i)
             {
@@ -73,7 +66,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                     artists += ", "
             }
                 
-            //song div in html only set if a new song is played
+            //song text in mirror.html only set if a new song is played
             let song = data.song + " - " + artists
             if (curSong != song)
             {
