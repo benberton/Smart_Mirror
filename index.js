@@ -1,6 +1,7 @@
 const express = require('express')
 const fs = require('fs')
 
+//run through port 8888
 const port = 8888
 
 const app = express()
@@ -9,8 +10,10 @@ app.use(express.static('public'))
 //using json format
 app.use(express.json());
 
+//defining Spotify API object
 var SpotifyWebApi = require('spotify-web-api-node');
 
+// defines scopes define the type of data returned by the Spotify API
 const scopes = [
     'ugc-image-upload',
     'user-read-playback-state',
@@ -34,7 +37,7 @@ const scopes = [
 ];
 
 
-// credentials are optional
+// credentials are optional, used by spotify 
 var spotifyApi = new SpotifyWebApi({
     clientId: '28cafb8e6ad643abb3c590097c498b8d',
     clientSecret: 'fc7c371dc50241b49afea980c72d5aaa',
@@ -48,8 +51,10 @@ app.get('/login', (req, res) => {
 });
   
 
-//is called once the user is logged in. It returns the access token and refreshes to make sure a valid token is in use
+//is called once the user is logged in. It returns the access token 
+// it refreshes once the 90 percent of the access token's time has been used up (usually only lasts 60 minutes)
 app.get('/callback', (req, res) => {
+
     const error = req.query.error;
     const code = req.query.code;
     const state = req.query.state;
@@ -60,6 +65,7 @@ app.get('/callback', (req, res) => {
       return;
     }
   
+    //getting access token and refresh token and setting it within the spotifyAPI object
     spotifyApi
     .authorizationCodeGrant(code)
     .then(data => {
@@ -85,7 +91,9 @@ app.get('/callback', (req, res) => {
     });
 });
 
+// returns information about the current song the user is listening to
 app.post("/api/getCurrentSong", function(req,res) {
+    // using the Spotify API to get the current song
     spotifyApi.getMyCurrentPlayingTrack().then(e => {
         let song = e.body.item.name
         let album = e.body.item.album.name
@@ -105,7 +113,7 @@ app.post("/api/getCurrentSong", function(req,res) {
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('a383db00532449a784029a7a4829665f');
 
-//returns top x number of news articles
+//returns top news articles (usually around 50)
 app.post("/api/getArticles", function(req,res) {
   newsapi.v2.topHeadlines({
         language: 'en',
@@ -121,7 +129,6 @@ app.post("/api/getArticles", function(req,res) {
 })
 
 
-  
 
 app.listen(port,function(error) {
     if (error)
@@ -129,13 +136,3 @@ app.listen(port,function(error) {
     else
         console.log("Server started on port " + port)
 })
-
-
-
-
-// //basic api call example
-// app.post("/api/getTime", function(req,res) {
-//     console.log(req.data)
-//     res.send(JSON.stringify({"time": Date().toISOString()}))
-//     res.end()
-// })
