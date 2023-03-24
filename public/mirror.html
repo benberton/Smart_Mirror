@@ -27,37 +27,46 @@
             <div id="news_article"></div>
         </div>	
         <meta charset="utf-8">
+        
+    <!-- This section is used for displaying the weather data and icon image -->
     <section>
         <div id="weather-container">
-            <div id="icon"></div> <p>test</p>
+            <div id="weather-icon"></div>
             <div id="weather-info">
+            <div id="weather-icon"></div>
+            <div id="all-temps">
                 <p id="temperature"></p>
                 <p id="high"></p>
                 <p id="low"></p>
             </div>
+            </div>
             <p id="error"></p>
         </div>
         <script>
+            // establishes variables which will be used to display weather information
             const temperatureElem = document.querySelector('#temperature');
             const highElem = document.querySelector('#high');
             const lowElem = document.querySelector('#low');
             const iconElem = document.querySelector('#weather-icon');
           
-            fetch('/weather', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
+            fetch('/weather', { // route used in combination with the index.js file
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
               }
             }).then(function(response) {
               return response.json();
             }).then(function(weather) {
-              temperatureElem.textContent = (weather.temperature * 9/5 + 32).toFixed(0) + ' °F';
-              highElem.textContent = 'High: ' + (weather.high * 9/5 + 32).toFixed(0) + ' °F';
-              lowElem.textContent = 'Low: ' + (weather.low * 9/5 + 32).toFixed(0) + ' °F';
-              iconElem.style.backgroundImage = `url(http://openweathermap.org/img/w/${weather.icon}.png)`;
-              console.log(weather.icon);
+                // console.log(weather);
+                // this section is used to convert the temperature received from the api from celsius to farhenheit
+                temperatureElem.textContent = 'Current: ' + (weather.temperature * 9/5 + 32).toFixed(0) + ' °F';
+                highElem.textContent = 'High: ' + (weather.high * 9/5 + 32).toFixed(0) + ' °F';
+                lowElem.textContent = 'Low: ' + (weather.low * 9/5 + 32).toFixed(0) + ' °F';
+                iconElem.style.backgroundImage = `url(http://openweathermap.org/img/w/${weather.icon}.png)`;
+                document.getElementById("weather-icon").src = weather.icon;
+
             }).catch(function() {
-              console.log('Error fetching weather data');
+                console.log('Error fetching weather data');
             });
         </script>
     </section> 

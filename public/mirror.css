@@ -23,18 +23,35 @@ body{
     display: inline-block;
     vertical-align: top;
     width: 15%;
-    margin-right: 5%;
+    margin-right: 15%;
 }
 
 #album_cover {
-    max-width: 100%;
+    width: 20vh;
+    height: 20vh;
+    padding-right: 10px;
 }
 
 #news_container {
     display: inline-block;
-    width: 25%;
+    width: 25vh;
 }
 
 #news_header {
     font-size: 25px;
+}
+
+#weather-icon{
+    width: 15vh;
+    height: 15vh;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+}
+
+#all-temps{
+    display: inline;
+    position: absolute;
+    font-size: 5vh;
+    float: left;
 }
