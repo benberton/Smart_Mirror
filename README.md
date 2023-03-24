@@ -8,7 +8,12 @@
 ### **Materials:**
 To develop our project, we are using a raspberry pi, a motion senor, desktop monitor, and a one way mirror. We will download and install SenseHat and use this as a base for displaying images, sensor tracking, and etc.
 
+### Description of Each File:
+
 
 ### How to Run & Test the Files:
-1. sudo python joystick.py
-2. sudo python motion.py
+1. Download Node js
+2. Download Express
+3. Download NewsAPI, Get API key from NewsAPI Webstie
+4. Download OpenWeatherMap API, Get API key from NewsAPI Website
+5. Download Spotify API, Get API key from Spotify Website
