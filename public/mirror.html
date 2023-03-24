@@ -26,5 +26,40 @@
             <br>
             <div id="news_article"></div>
         </div>	
+        <meta charset="utf-8">
+    <section>
+        <div id="weather-container">
+            <div id="icon"></div> <p>test</p>
+            <div id="weather-info">
+                <p id="temperature"></p>
+                <p id="high"></p>
+                <p id="low"></p>
+            </div>
+            <p id="error"></p>
+        </div>
+        <script>
+            const temperatureElem = document.querySelector('#temperature');
+            const highElem = document.querySelector('#high');
+            const lowElem = document.querySelector('#low');
+            const iconElem = document.querySelector('#weather-icon');
+          
+            fetch('/weather', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            }).then(function(response) {
+              return response.json();
+            }).then(function(weather) {
+              temperatureElem.textContent = (weather.temperature * 9/5 + 32).toFixed(0) + ' °F';
+              highElem.textContent = 'High: ' + (weather.high * 9/5 + 32).toFixed(0) + ' °F';
+              lowElem.textContent = 'Low: ' + (weather.low * 9/5 + 32).toFixed(0) + ' °F';
+              iconElem.style.backgroundImage = `url(http://openweathermap.org/img/w/${weather.icon}.png)`;
+              console.log(weather.icon);
+            }).catch(function() {
+              console.log('Error fetching weather data');
+            });
+        </script>
+    </section> 
     </body>
 </html>

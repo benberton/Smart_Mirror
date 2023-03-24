@@ -1,5 +1,6 @@
 const express = require('express')
 const fs = require('fs')
+require('http').request
 
 //run through port 8888
 const port = 8888
@@ -39,8 +40,8 @@ const scopes = [
 
 // credentials are optional, used by spotify 
 var spotifyApi = new SpotifyWebApi({
-    clientId: '28cafb8e6ad643abb3c590097c498b8d',
-    clientSecret: 'fc7c371dc50241b49afea980c72d5aaa',
+    clientId: '8a7db05a27494724906dbc7372bdd65f',
+    clientSecret: 'd5b31c86cd344e488a6336dc9dc17f43',
     redirectUri: 'http://localhost:8888/callback'
 });
   
@@ -109,24 +110,24 @@ app.post("/api/getCurrentSong", function(req,res) {
 })
 
 
-//credentials for news api
-const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI('a383db00532449a784029a7a4829665f');
+// //credentials for news api
+// const NewsAPI = require('newsapi');
+// const newsapi = new NewsAPI('55da6f5670cf41eb8f4ba23ac03a1323');
 
-//returns top news articles (usually around 50)
-app.post("/api/getArticles", function(req,res) {
-  newsapi.v2.topHeadlines({
-        language: 'en',
-        country: 'us',
-        sortby: 'popularity'
-    }).then(response => {
-        let titles = []
-        let articles = response.articles
-        for (let i = 0; i < articles.length; ++i)
-            titles.push(articles[i].title)
-        res.send(JSON.stringify({"articles": titles}))
-    });
-})
+// //returns top news articles (usually around 50)
+// app.post("/api/getArticles", function(req,res) {
+//   newsapi.v2.topHeadlines({
+//         language: 'en',
+//         country: 'us',
+//         sortby: 'popularity'
+//     }).then(response => {
+//         let titles = []
+//         let articles = response.articles
+//         for (let i = 0; i < articles.length; ++i)
+//             titles.push(articles[i].title)
+//         res.send(JSON.stringify({"articles": titles}))
+//     });
+// })
 
 
 
@@ -136,3 +137,30 @@ app.listen(port,function(error) {
     else
         console.log("Server started on port " + port)
 })
+
+// ***************** Weather API *****************
+var request = require ('request');
+const API_KEY = "22f285771efbaa99078e550b6dd6a77d";
+
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/mirror.html');
+});
+
+app.post('/weather', function(req, res) {
+  const url = `http://api.openweathermap.org/data/2.5/weather?q=Spokane&appid=${API_KEY}&units=metric`;
+
+  request(url, function (err, response, body) {
+    if (err) {
+      res.status(500).send('Error fetching weather data');
+    } else {
+      const weatherData = JSON.parse(body);
+
+      res.json({
+        temperature: weatherData.main.temp,
+        high: weatherData.main.temp_max,
+        low: weatherData.main.temp_min,
+        icon: weatherData.weather[0].icon
+      });
+    }
+  });
+});
