@@ -11,11 +11,10 @@ To develop our project, we are using a raspberry pi, a motion senor, desktop mon
 ### Description of Folders & Files:
 - Images folder: contains images used in testing
 - javaScript folder: includes functions related to clock like a function to return the current hours
-- login_page folder: includes html page (user.html) and a js file (user.js) that allow the user of the mirror to sign into their spotify account
-- mirror_page folder:
-  - mirror.html: the page that is displayed on the mirror. It shows the results from the Spotify API, News API, and Weather API
-  - mirror.js: holds functions and code that communicate with the backend and pulls API information
-  - mirror.css: the styling for the mirror.html page
+- includes html page (user.html) and a js file (user.js) that allow the user of the mirror to sign into their spotify account
+- mirror.html: the page that is displayed on the mirror. It shows the results from the Spotify API, News API, and Weather API
+- mirror.js: holds functions and code that communicate with the backend and pulls API information
+- mirror.css: the styling for the mirror.html page
 - index.js: the backend for the smart mirror. It communicates with the smart mirror html page to send infromation that is displayed.
 
 ### How to Run & Test the Files:

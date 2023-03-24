@@ -9,21 +9,21 @@ document.addEventListener("DOMContentLoaded", ()=>{
         document.getElementById("time_of_day").innerHTML = getTimeOfDay(date)
     }, 30);
 
+    setArticles()
+    //calls for news article once every set period, in this case, once every 20 minutes
+    setInterval(setArticles(),20000)
 
     //uses modular math to cycle between the articles returned by the news API
     let articles = []
-    let numOfArticles = 0
     let curArticle = 0
     let readTime = 50000
     setInterval(function(){
         let article_title = document.getElementById("news_article")
         article_title.innerHTML = "- " + articles[curArticle % articles.length]
         curArticle++
-    },readTime)
+        console.log(articles)
+    },5000)
 
-    setArticles()
-    //calls for news article once every set period, in this case, once every 20 minutes
-    setInterval(setArticles(),200000)
 
     //sets spotify song once every 3 seconds using the Spotify API
     let curSong = ""
