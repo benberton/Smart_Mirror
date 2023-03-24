@@ -20,9 +20,9 @@ To develop our project, we are using a raspberry pi, a motion senor, desktop mon
 ### How to Run & Test the Files:
 1. Download Node js
 2. Download Express
-3. Download NewsAPI, Get API key from NewsAPI Webstie
-4. Download OpenWeatherMap API, Get API key from NewsAPI Website
-5. Download Spotify API, Get API key from Spotify Website
+3. Download NewsAPI, Get API key from NewsAPI Webstie - enter in index.js
+4. Download OpenWeatherMap API, Get API key from NewsAPI Website - enter in index.js
+5. Download Spotify API, Get API key from Spotify Website - enter in index.js
 6. Enter "node ." in linux terminal
 7. Go to "http://localhost:8888/user.html" to log into your spotify account
 8. Go to "http://localhost:8888/mirror.html" to see the html page for the smart mirror
