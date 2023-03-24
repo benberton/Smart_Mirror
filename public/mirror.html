@@ -29,12 +29,14 @@
         <meta charset="utf-8">
     <section>
         <div id="weather-container">
-            <div id="weather-icon" style="height: 50px; background-repeat: no-repeat;"></div>
+            <div id="weather-icon"></div>
             <div id="weather-info">
             <div id="weather-icon"></div>
+            <div id="all-temps">
                 <p id="temperature"></p>
                 <p id="high"></p>
                 <p id="low"></p>
+            </div>
             </div>
             <p id="error"></p>
         </div>
@@ -57,9 +59,6 @@
                 lowElem.textContent = 'Low: ' + (weather.low * 9/5 + 32).toFixed(0) + ' °F';
                 iconElem.style.backgroundImage = `url(http://openweathermap.org/img/w/${weather.icon}.png)`;
                 document.getElementById("weather-icon").src = weather.icon;
-                // let locationIcon = document.querySelector('.weather-icon'); 
-                // const {icon} = data.weather[0];
-                // locationIcon.innerHTML = `<img src="icons/${icon}.png"/>`;
 
             }).catch(function() {
                 console.log('Error fetching weather data');
