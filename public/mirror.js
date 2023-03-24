@@ -21,27 +21,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
         curArticle++
     },readTime)
 
+    setArticles()
     //calls for news article once every set period, in this case, once every 20 minutes
-    setInterval(function(){
-        fetch('/api/getArticles', {
-            method: 'POST', // or 'PUT'
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({"key": "na"}),
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data.articles)
-            articles = data.articles
-            numOfArticles = data.articles.length
-            console.log(numOfArticles)
-            curArticle = 0
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    },200000)
+    setInterval(setArticles(),200000)
 
     //sets spotify song once every 3 seconds using the Spotify API
     let curSong = ""
@@ -83,3 +65,24 @@ document.addEventListener("DOMContentLoaded", ()=>{
   
 });
 
+function setArticles()
+{
+    fetch('/api/getArticles', {
+        method: 'POST', // or 'PUT'
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({"key": "na"}),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data.articles)
+        articles = data.articles
+        numOfArticles = data.articles.length
+        console.log(numOfArticles)
+        curArticle = 0
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
