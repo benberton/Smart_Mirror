@@ -145,7 +145,7 @@ const API_KEY = "22f285771efbaa99078e550b6dd6a77d";
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/mirror.html');
 });
-
+// establishes connection to weather api
 app.post('/weather', function(req, res) {
   const url = `http://api.openweathermap.org/data/2.5/weather?q=Spokane&appid=${API_KEY}&units=metric`;
 
@@ -154,7 +154,7 @@ app.post('/weather', function(req, res) {
       res.status(500).send('Error fetching weather data');
     } else {
       const weatherData = JSON.parse(body);
-
+        // Gets the JSON response from the api and sends it to the front end
       res.json({
         temperature: weatherData.main.temp,
         high: weatherData.main.temp_max,

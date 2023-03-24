@@ -46,11 +46,12 @@ body{
     height: 15vh;
     background-repeat: no-repeat;
     background-size: contain;
-    
+    display: inline-block;
 }
 
 #all-temps{
     display: inline;
     position: absolute;
     font-size: 5vh;
+    float: left;
 }

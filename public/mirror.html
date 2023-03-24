@@ -27,6 +27,8 @@
             <div id="news_article"></div>
         </div>	
         <meta charset="utf-8">
+        
+    <!-- This section is used for displaying the weather data and icon image -->
     <section>
         <div id="weather-container">
             <div id="weather-icon"></div>
@@ -41,12 +43,13 @@
             <p id="error"></p>
         </div>
         <script>
+            // establishes variables which will be used to display weather information
             const temperatureElem = document.querySelector('#temperature');
             const highElem = document.querySelector('#high');
             const lowElem = document.querySelector('#low');
             const iconElem = document.querySelector('#weather-icon');
           
-            fetch('/weather', {
+            fetch('/weather', { // route used in combination with the index.js file
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -54,6 +57,8 @@
             }).then(function(response) {
               return response.json();
             }).then(function(weather) {
+                // console.log(weather);
+                // this section is used to convert the temperature received from the api from celsius to farhenheit
                 temperatureElem.textContent = 'Current: ' + (weather.temperature * 9/5 + 32).toFixed(0) + ' °F';
                 highElem.textContent = 'High: ' + (weather.high * 9/5 + 32).toFixed(0) + ' °F';
                 lowElem.textContent = 'Low: ' + (weather.low * 9/5 + 32).toFixed(0) + ' °F';
