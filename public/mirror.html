@@ -29,8 +29,9 @@
         <meta charset="utf-8">
     <section>
         <div id="weather-container">
-            <div id="icon"></div> <p>test</p>
+            <div id="weather-icon" style="height: 50px; background-repeat: no-repeat;"></div>
             <div id="weather-info">
+            <div id="weather-icon"></div>
                 <p id="temperature"></p>
                 <p id="high"></p>
                 <p id="low"></p>
@@ -44,20 +45,24 @@
             const iconElem = document.querySelector('#weather-icon');
           
             fetch('/weather', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
               }
             }).then(function(response) {
               return response.json();
             }).then(function(weather) {
-              temperatureElem.textContent = (weather.temperature * 9/5 + 32).toFixed(0) + ' °F';
-              highElem.textContent = 'High: ' + (weather.high * 9/5 + 32).toFixed(0) + ' °F';
-              lowElem.textContent = 'Low: ' + (weather.low * 9/5 + 32).toFixed(0) + ' °F';
-              iconElem.style.backgroundImage = `url(http://openweathermap.org/img/w/${weather.icon}.png)`;
-              console.log(weather.icon);
+                temperatureElem.textContent = 'Current: ' + (weather.temperature * 9/5 + 32).toFixed(0) + ' °F';
+                highElem.textContent = 'High: ' + (weather.high * 9/5 + 32).toFixed(0) + ' °F';
+                lowElem.textContent = 'Low: ' + (weather.low * 9/5 + 32).toFixed(0) + ' °F';
+                iconElem.style.backgroundImage = `url(http://openweathermap.org/img/w/${weather.icon}.png)`;
+                document.getElementById("weather-icon").src = weather.icon;
+                // let locationIcon = document.querySelector('.weather-icon'); 
+                // const {icon} = data.weather[0];
+                // locationIcon.innerHTML = `<img src="icons/${icon}.png"/>`;
+
             }).catch(function() {
-              console.log('Error fetching weather data');
+                console.log('Error fetching weather data');
             });
         </script>
     </section> 
