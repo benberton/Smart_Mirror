@@ -55,3 +55,7 @@ body{
     font-size: 5vh;
     float: left;
 }
+
+.hidden{
+    display: hidden;
+}

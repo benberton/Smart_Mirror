@@ -112,8 +112,8 @@ app.post("/api/getCurrentSong", function(req,res) {
 
 //credentials for news api
 const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI('55da6f5670cf41eb8f4ba23ac03a1323');
-// const newsapi = new NewsAPI('a383db00532449a784029a7a4829665f');
+// const newsapi = new NewsAPI('55da6f5670cf41eb8f4ba23ac03a1323');
+const newsapi = new NewsAPI('a383db00532449a784029a7a4829665f');
 
 
 //returns top news articles (usually around 50)
@@ -121,7 +121,7 @@ app.post("/api/getArticles", function(req,res) {
   newsapi.v2.topHeadlines({
         language: 'en',
         country: 'us',
-        sortby: 'popularity'
+        sortby: 'popularity',
     }).then(response => {
         let titles = []
         let articles = response.articles
