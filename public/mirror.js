@@ -9,9 +9,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
         document.getElementById("time_of_day").innerHTML = getTimeOfDay(date)
     }, 30);
 
-    setArticles()
-    //calls for news article once every set period, in this case, once every 20 minutes
-    setInterval(setArticles(),50000)
+    // setArticles()
+    // //calls for news article once every set period, in this case, once every 20 minutes
+    // setInterval(setArticles(),50000)
 
     //uses modular math to cycle between the articles returned by the news API
     let articles = []
