@@ -32,6 +32,10 @@ body{
     padding-right: 10px;
 }
 
+#song_info {
+    width: 20vh;
+}
+
 #news_container {
     display: inline-block;
     width: 25vh;
