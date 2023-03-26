@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         document.getElementById("time_of_day").innerHTML = getTimeOfDay(date)
     }, 30);
 
-    // setArticles()
+    setArticles()
     // //calls for news article once every set period, in this case, once every 20 minutes
     // setInterval(setArticles(),50000)
 
